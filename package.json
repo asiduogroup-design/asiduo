@@ -1,0 +1,15 @@
+{
+  "name": "asiduo-enterprises",
+  "private": true,
+  "version": "1.0.0",
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
+  "scripts": {
+    "install:all": "npm install --workspaces",
+    "dev:backend": "npm --workspace backend run dev",
+    "dev:frontend": "npm --workspace frontend start",
+    "seed": "npm --workspace backend run seed"
+  }
+}
