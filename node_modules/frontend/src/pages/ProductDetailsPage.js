@@ -5,7 +5,7 @@ import { productService } from "../services/api";
 
 const ProductDetailsPage = () => {
   const { id } = useParams();
-  const { data, loading, error } = useAsync(() => productService.getProductById(id));
+  const { data, loading, error } = useAsync(() => productService.getProductById(id), true, [id]);
   const product = data?.data;
 
   if (loading) {

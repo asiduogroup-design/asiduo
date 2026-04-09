@@ -19,7 +19,11 @@ app.use(
 );
 app.use(express.json({ limit: "1mb" }));
 app.use(express.urlencoded({ extended: true }));
-app.use(morgan("dev"));
+app.use(
+  morgan("dev", {
+    skip: (req, res) => res.statusCode === 304 || req.path === "/api/health"
+  })
+);
 
 app.get("/api/health", (req, res) => {
   res.status(200).json({

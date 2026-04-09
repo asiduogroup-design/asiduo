@@ -1,16 +1,19 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
-const useAsync = (asyncFunction, immediate = true) => {
+const useAsync = (asyncFunction, immediate = true, dependencies = []) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(immediate);
   const [error, setError] = useState("");
+  const asyncFunctionRef = useRef(asyncFunction);
+
+  asyncFunctionRef.current = asyncFunction;
 
   const execute = useCallback(async () => {
     setLoading(true);
     setError("");
 
     try {
-      const response = await asyncFunction();
+      const response = await asyncFunctionRef.current();
       setData(response.data);
       return response.data;
     } catch (err) {
@@ -19,13 +22,13 @@ const useAsync = (asyncFunction, immediate = true) => {
     } finally {
       setLoading(false);
     }
-  }, [asyncFunction]);
+  }, []);
 
   useEffect(() => {
     if (immediate) {
       execute().catch(() => null);
     }
-  }, [execute, immediate]);
+  }, [execute, immediate, ...dependencies]);
 
   return {
     data,
