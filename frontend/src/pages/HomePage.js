@@ -103,20 +103,6 @@ const HomePage = () => {
         </div>
       </section>
 
-      <section className="section section-tight">
-        <div className="container">
-          <div className="trust-band">
-            {highlights.map((item) => (
-              <div className="trust-band-item" key={item.title}>
-                <h3>{item.value}</h3>
-                <h4>{item.title}</h4>
-                <p>{item.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       <section className="section">
         <div className="container">
           <SectionHeader
