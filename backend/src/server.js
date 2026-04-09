@@ -40,15 +40,36 @@ app.use("/api/categories", categoryRoutes);
 app.use(notFound);
 app.use(errorHandler);
 
-const PORT = process.env.PORT || 5000;
+const DEFAULT_PORT = Number(process.env.PORT) || 5000;
+
+const startListening = (startPort, maxAttempts = 10) => {
+  let port = startPort;
+
+  const tryListen = () => {
+    const server = app.listen(port, () => {
+      console.log(`Server running on port ${port}`);
+    });
+
+    server.on("error", (error) => {
+      if (error.code === "EADDRINUSE" && port < startPort + maxAttempts) {
+        console.warn(`Port ${port} is busy. Trying port ${port + 1}...`);
+        port += 1;
+        tryListen();
+        return;
+      }
+
+      console.error(error.message);
+      process.exit(1);
+    });
+  };
+
+  tryListen();
+};
 
 const startServer = async () => {
   try {
     await connectDatabase();
-
-    app.listen(PORT, () => {
-      console.log(`Server running on port ${PORT}`);
-    });
+    startListening(DEFAULT_PORT);
   } catch (error) {
     console.error(error.message);
     process.exit(1);
