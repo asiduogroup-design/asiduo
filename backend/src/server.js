@@ -12,9 +12,28 @@ dotenv.config();
 
 const app = express();
 
+const defaultAllowedOrigins = [
+  "http://localhost:3000",
+  "https://asiduo-frontend.vercel.app"
+];
+
+const configuredOrigins = (process.env.CLIENT_URL || "")
+  .split(",")
+  .map((origin) => origin.trim())
+  .filter(Boolean);
+
+const allowedOrigins = new Set([...defaultAllowedOrigins, ...configuredOrigins]);
+
 app.use(
   cors({
-    origin: process.env.CLIENT_URL || "*"
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.has(origin)) {
+        callback(null, true);
+        return;
+      }
+
+      callback(new Error("Not allowed by CORS"));
+    }
   })
 );
 app.use(express.json({ limit: "1mb" }));
