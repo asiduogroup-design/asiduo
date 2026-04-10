@@ -112,7 +112,6 @@ const HomePage = () => {
           <div className="capability-grid">
             {capabilities.map((item) => (
               <div className="capability-card" key={item.title}>
-                <div className="capability-accent" />
                 <h3>{item.title}</h3>
                 <p>{item.description}</p>
               </div>
