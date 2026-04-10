@@ -120,8 +120,36 @@ main {
   gap: 1.25rem;
 }
 
+.nav-dashboard-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-user-avatar {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 999px;
+  color: var(--color-white);
+  font-size: 0.95rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--color-navy), var(--color-blue));
+  box-shadow: var(--shadow-soft);
+}
+
 .nav-links a.active {
   color: var(--color-navy);
+}
+
+.nav-logout {
+  border: 0;
+  padding: 0;
+  color: var(--color-navy);
+  background: transparent;
+  font: inherit;
+  cursor: pointer;
 }
 
 .nav-toggle {
@@ -694,6 +722,34 @@ main {
   padding: 2rem;
 }
 
+.auth-shell {
+  display: grid;
+  place-items: center;
+}
+
+.auth-card {
+  width: min(100%, 560px);
+}
+
+.auth-grid {
+  grid-template-columns: 1fr;
+}
+
+.error-text {
+  margin: 1rem 0 0;
+  color: var(--color-danger);
+  font-weight: 600;
+}
+
+.auth-meta {
+  margin: 1rem 0 0;
+}
+
+.auth-meta a {
+  color: var(--color-navy);
+  font-weight: 700;
+}
+
 .form-grid {
   display: grid;
   gap: 1rem;
@@ -773,10 +829,23 @@ main {
   background: linear-gradient(180deg, var(--color-navy), var(--color-navy-dark));
 }
 
+.admin-back-link {
+  display: inline-flex;
+  margin-top: 0.5rem;
+  border-radius: 12px;
+  padding: 0.8rem 1rem;
+  color: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.08);
+}
+
 .admin-sidebar nav {
   display: grid;
   gap: 0.75rem;
   margin-top: 2rem;
+}
+
+.back-home-btn {
+  margin-bottom: 1rem;
 }
 
 .admin-sidebar a {

@@ -1,4 +1,4 @@
-import { NavLink, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
 
 const adminLinks = [
   { label: "Dashboard", path: "/admin" },
@@ -11,6 +11,9 @@ const AdminLayout = () => (
   <div className="admin-shell">
     <aside className="admin-sidebar">
       <h2>Admin Panel</h2>
+      <Link to="/" className="admin-back-link">
+        Back to Home
+      </Link>
       <nav>
         {adminLinks.map((link) => (
           <NavLink

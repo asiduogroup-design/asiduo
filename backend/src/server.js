@@ -1,11 +1,11 @@
 const express = require("express");
-const cors = require("cors");
 const morgan = require("morgan");
 const dotenv = require("dotenv");
 const connectDatabase = require("./config/db");
 const productRoutes = require("./routes/productRoutes");
 const inquiryRoutes = require("./routes/inquiryRoutes");
 const categoryRoutes = require("./routes/categoryRoutes");
+const authRoutes = require("./routes/authRoutes");
 const { errorHandler, notFound } = require("./middlewares/errorMiddleware");
 
 dotenv.config();
@@ -49,6 +49,7 @@ app.use("/api/products", productRoutes);
 app.use("/api/inquiry", inquiryRoutes);
 app.use("/api/inquiries", inquiryRoutes);
 app.use("/api/categories", categoryRoutes);
+app.use("/api/auth", authRoutes);
 
 app.use(notFound);
 app.use(errorHandler);

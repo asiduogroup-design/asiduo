@@ -1,4 +1,5 @@
 import axios from "axios";
+import { getAccessToken } from "../utils/auth";
 
 const api = axios.create({
   baseURL: process.env.REACT_APP_API_BASE_URL || "http://localhost:5000/api",
@@ -6,6 +7,20 @@ const api = axios.create({
     "Content-Type": "application/json"
   }
 });
+
+api.interceptors.request.use((config) => {
+  const token = getAccessToken();
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
+});
+
+export const authService = {
+  register: (payload) => api.post("/auth/register", payload),
+  login: (payload) => api.post("/auth/login", payload),
+  getProfile: () => api.get("/auth/me")
+};
 
 export const productService = {
   getProducts: (params = {}) => api.get("/products", { params }),

@@ -1,9 +1,32 @@
-import { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { COMPANY_NAME, navigationLinks } from "../../utils/constants";
+import { clearStoredAuth, getStoredAuth } from "../../utils/auth";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [auth, setAuth] = useState(getStoredAuth());
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const syncAuth = () => setAuth(getStoredAuth());
+    window.addEventListener("storage", syncAuth);
+    window.addEventListener("auth-changed", syncAuth);
+
+    return () => {
+      window.removeEventListener("storage", syncAuth);
+      window.removeEventListener("auth-changed", syncAuth);
+    };
+  }, []);
+
+  const handleLogout = () => {
+    clearStoredAuth();
+    setIsOpen(false);
+    navigate("/login");
+  };
+
+  const dashboardPath = auth?.user?.role === "admin" ? "/admin" : "/user";
+  const userInitial = auth?.user?.name?.trim()?.charAt(0)?.toUpperCase() || auth?.user?.role?.charAt(0)?.toUpperCase() || "U";
 
   return (
     <header className="site-header">
@@ -35,6 +58,40 @@ const Navbar = () => {
               {link.label}
             </NavLink>
           ))}
+          {auth?.token ? (
+            <>
+              <NavLink
+                to={dashboardPath}
+                className={({ isActive }) => `nav-dashboard-link ${isActive ? "active" : ""}`.trim()}
+                onClick={() => setIsOpen(false)}
+                title="Open dashboard"
+              >
+                <span className="nav-user-avatar" aria-hidden="true">
+                  {userInitial}
+                </span>
+              </NavLink>
+              <button type="button" className="nav-logout" onClick={handleLogout}>
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
+              <NavLink
+                to="/login"
+                className={({ isActive }) => (isActive ? "active" : "")}
+                onClick={() => setIsOpen(false)}
+              >
+                Login
+              </NavLink>
+              <NavLink
+                to="/register"
+                className={({ isActive }) => (isActive ? "active" : "")}
+                onClick={() => setIsOpen(false)}
+              >
+                Register
+              </NavLink>
+            </>
+          )}
         </nav>
       </div>
     </header>

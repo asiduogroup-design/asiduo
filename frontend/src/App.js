@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import MainLayout from "./components/layout/MainLayout";
 import AdminLayout from "./components/layout/AdminLayout";
+import ProtectedRoute from "./components/auth/ProtectedRoute";
 import HomePage from "./pages/HomePage";
 import AboutPage from "./pages/AboutPage";
 import ProductsPage from "./pages/ProductsPage";
@@ -9,6 +10,9 @@ import ServicesPage from "./pages/ServicesPage";
 import IndustriesPage from "./pages/IndustriesPage";
 import ContactPage from "./pages/ContactPage";
 import RequestQuotePage from "./pages/RequestQuotePage";
+import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
+import UserDashboardPage from "./pages/UserDashboardPage";
 import DashboardPage from "./pages/admin/DashboardPage";
 import ProductManagementPage from "./pages/admin/ProductManagementPage";
 import InquiryManagementPage from "./pages/admin/InquiryManagementPage";
@@ -25,9 +29,26 @@ const App = () => (
       <Route path="/industries" element={<IndustriesPage />} />
       <Route path="/contact" element={<ContactPage />} />
       <Route path="/request-quote" element={<RequestQuotePage />} />
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/register" element={<RegisterPage />} />
+      <Route
+        path="/user"
+        element={
+          <ProtectedRoute roles={["user"]}>
+            <UserDashboardPage />
+          </ProtectedRoute>
+        }
+      />
     </Route>
 
-    <Route path="/admin" element={<AdminLayout />}>
+    <Route
+      path="/admin"
+      element={
+        <ProtectedRoute roles={["admin"]}>
+          <AdminLayout />
+        </ProtectedRoute>
+      }
+    >
       <Route index element={<DashboardPage />} />
       <Route path="products" element={<ProductManagementPage />} />
       <Route path="inquiries" element={<InquiryManagementPage />} />
