@@ -12,17 +12,25 @@ dotenv.config();
 
 const app = express();
 
+const DEFAULT_ALLOWED_ORIGINS = [
+  "http://localhost:3000",
+  "https://asiduo-frontend.vercel.app"
+];
+
 app.use(
   cors({
     origin: (origin, callback) => {
-      const allowed = (process.env.CLIENT_URL || "")
+      const fromEnv = (process.env.CLIENT_URL || "")
         .split(",")
         .map((u) => u.trim())
         .filter(Boolean);
-      if (!origin || allowed.includes(origin) || allowed.includes("*")) {
+      const allowed = [...new Set([...DEFAULT_ALLOWED_ORIGINS, ...fromEnv])];
+      // no origin = same-origin / server-to-server / Postman — allow it
+      if (!origin || allowed.includes(origin)) {
         callback(null, true);
       } else {
-        callback(new Error(`CORS: origin ${origin} not allowed`));
+        // return false (403) instead of throwing — avoids 500 + missing CORS header
+        callback(null, false);
       }
     },
     credentials: true
