@@ -288,18 +288,14 @@ const HomePage = () => {
       </section>
 
       <section className="section section-muted">
-        <div className="container process-shell">
-          <div>
-            <SectionHeader
-              title="How We Work"
-              subtitle="Simple, direct, and built around commercial clarity from inquiry to shipment."
-              align="left"
-            />
-          </div>
-          <div className="process-list">
-            {tradeSteps.map((step, index) => (
-              <div className="process-card" key={step}>
-                <span>{`0${index + 1}`}</span>
+        <div className="container">
+          <SectionHeader
+            title="How We Work"
+            subtitle="Simple, direct, and built around commercial clarity from inquiry to shipment."
+          />
+          <div className="capability-grid">
+            {tradeSteps.map((step) => (
+              <div className="capability-card" key={step}>
                 <p>{step}</p>
               </div>
             ))}

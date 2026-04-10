@@ -501,13 +501,6 @@ main {
   box-shadow: var(--shadow-soft);
 }
 
-.process-card span {
-  color: var(--color-blue);
-  font-size: 0.95rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-}
-
 .process-card p {
   margin: 0;
   line-height: 1.75;
