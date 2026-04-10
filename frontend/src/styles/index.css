@@ -139,17 +139,18 @@ main {
 }
 
 .hero-section {
-  padding: 6rem 0 5rem;
+  padding: 0;
 }
 
 .hero-content {
+  width: 100%;
   padding: 4rem;
-  border-radius: 32px;
+  border-radius: 0;
   color: var(--color-white);
   background:
     linear-gradient(135deg, rgba(9, 22, 41, 0.92), rgba(31, 79, 122, 0.86)),
-    url("https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=1400&q=80") center/cover;
-  box-shadow: var(--shadow-soft);
+    url("https://res.cloudinary.com/dlx9tnj7p/image/upload/v1775794813/nikhilesh-boppana-j9jBsNg2pSw-unsplash_qltdzv.jpg") center/cover;
+  box-shadow: none;
 }
 
 .eyebrow {
@@ -309,7 +310,7 @@ main {
   color: var(--color-white);
   background:
     linear-gradient(160deg, rgba(9, 22, 41, 0.96), rgba(31, 79, 122, 0.9)),
-    url("https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?auto=format&fit=crop&w=1200&q=80") center/cover;
+    url("https://res.cloudinary.com/dlx9tnj7p/image/upload/v1775794813/nikhilesh-boppana-j9jBsNg2pSw-unsplash_qltdzv.jpg") center/cover;
 }
 
 .hero-panel-primary h3 {
@@ -482,27 +483,32 @@ main {
   line-height: 1.75;
 }
 
+.home-cta-section {
+  padding: 0;
+}
+
 .home-cta {
   display: grid;
   gap: 1.5rem;
-  grid-template-columns: 1.2fr 0.8fr;
-  align-items: center;
-  padding: 2.25rem;
-  border-radius: 28px;
+  grid-template-columns: 1fr;
+  align-items: start;
+  width: 100%;
+  padding: 4rem;
+  border-radius: 0;
   color: var(--color-white);
   background: linear-gradient(135deg, var(--color-navy-dark), var(--color-blue));
-  box-shadow: var(--shadow-soft);
+  box-shadow: none;
 }
 
 .home-cta h2 {
   margin: 0;
-  max-width: 620px;
+  max-width: 920px;
   font-size: clamp(2rem, 3vw, 3rem);
   line-height: 1.1;
 }
 
 .home-cta p {
-  max-width: 620px;
+  max-width: 920px;
   line-height: 1.75;
   color: rgba(255, 255, 255, 0.82);
 }
@@ -510,7 +516,7 @@ main {
 .home-cta-actions {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-end;
+  justify-content: flex-start;
   gap: 1rem;
 }
 
@@ -839,6 +845,10 @@ main {
     grid-template-columns: 1fr;
   }
 
+  .home-cta {
+    padding: 2.5rem 1.25rem;
+  }
+
   .footer-grid,
   .card-topline,
   .admin-list-card,
@@ -853,5 +863,9 @@ main {
 
   .home-hero-copy h1 {
     font-size: 2.75rem;
+  }
+
+  .hero-content {
+    padding: 2.5rem 1.25rem;
   }
 }

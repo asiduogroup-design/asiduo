@@ -103,20 +103,6 @@ const HomePage = () => {
         </div>
       </section>
 
-      <section className="section section-tight">
-        <div className="container">
-          <div className="trust-band">
-            {highlights.map((item) => (
-              <div className="trust-band-item" key={item.title}>
-                <h3>{item.value}</h3>
-                <h4>{item.title}</h4>
-                <p>{item.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       <section className="section">
         <div className="container">
           <SectionHeader
@@ -208,25 +194,21 @@ const HomePage = () => {
         </div>
       </section>
 
-      <section className="section">
-        <div className="container">
-          <div className="home-cta">
-            <div>
-              <p className="eyebrow">Ready To Trade</p>
-              <h2>Let’s build your next import or export supply channel with confidence.</h2>
-              <p>
-                Connect with Asiduo Enterprises for sourcing discussions, technical
-                requirements, MOQ planning, and tailored quotations.
-              </p>
-            </div>
-            <div className="home-cta-actions">
-              <Link className="btn btn-primary" to="/contact">
-                Talk to Our Team
-              </Link>
-              <Link className="btn btn-secondary" to="/request-quote">
-                Get a Quote
-              </Link>
-            </div>
+      <section className="section home-cta-section">
+        <div className="home-cta">
+          <p className="eyebrow">Ready To Trade</p>
+          <h2>Let's build your next import or export supply channel with confidence.</h2>
+          <p>
+            Connect with Asiduo Enterprises for sourcing discussions, technical
+            requirements, MOQ planning, and tailored quotations.
+          </p>
+          <div className="home-cta-actions">
+            <Link className="btn btn-primary" to="/contact">
+              Talk to Our Team
+            </Link>
+            <Link className="btn btn-secondary" to="/request-quote">
+              Get a Quote
+            </Link>
           </div>
         </div>
       </section>
