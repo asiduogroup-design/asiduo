@@ -14,7 +14,18 @@ const app = express();
 
 app.use(
   cors({
-    origin: process.env.CLIENT_URL || "*"
+    origin: (origin, callback) => {
+      const allowed = (process.env.CLIENT_URL || "")
+        .split(",")
+        .map((u) => u.trim())
+        .filter(Boolean);
+      if (!origin || allowed.includes(origin) || allowed.includes("*")) {
+        callback(null, true);
+      } else {
+        callback(new Error(`CORS: origin ${origin} not allowed`));
+      }
+    },
+    credentials: true
   })
 );
 app.use(express.json({ limit: "1mb" }));
