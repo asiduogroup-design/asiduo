@@ -432,6 +432,13 @@ main {
   border-radius: 18px;
   background: rgba(255, 255, 255, 0.92);
   box-shadow: var(--shadow-soft);
+  transition: background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.service-line-card:hover {
+  background: #e8f4ff;
+  transform: translateY(-4px);
+  box-shadow: 0 24px 45px rgba(31, 79, 122, 0.18);
 }
 
 .service-line-card p {
@@ -439,13 +446,37 @@ main {
   line-height: 1.7;
 }
 
-.service-line-mark {
+.service-icon {
   flex-shrink: 0;
-  width: 12px;
-  height: 12px;
-  margin-top: 0.45rem;
-  border-radius: 999px;
-  background: linear-gradient(135deg, var(--color-navy), var(--color-blue));
+  display: flex;
+  align-items: center;
+  margin-top: 0.15rem;
+  color: var(--color-navy);
+  transition: color 0.25s ease;
+}
+
+.service-line-card:hover .service-icon {
+  color: var(--color-blue);
+}
+
+.service-line-card .letter {
+  display: inline-block;
+}
+
+.service-line-card:hover .letter {
+  animation: typeIn 0.05s ease both;
+  animation-delay: calc(var(--li, 0) * 0.025s);
+}
+
+@keyframes typeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .process-shell {
@@ -578,6 +609,26 @@ main {
 .admin-list {
   display: grid;
   gap: 1rem;
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.stack-list .service-line-card {
+  opacity: 0;
+}
+
+.stack-list.animate-in .service-line-card {
+  animation: slideInUp 0.42s ease both;
+  animation-delay: calc(var(--i, 0) * 0.1s);
 }
 
 .product-card {
