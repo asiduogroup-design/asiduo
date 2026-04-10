@@ -24,7 +24,7 @@ const products = [
     name: "Rice",
     category: "export",
     description: "High-quality export-grade rice sourced from trusted farming partners with consistent grain size, aroma, and purity.",
-    images: ["https://images.unsplash.com/photo-1586201375761-83865001e31b?auto=format&fit=crop&w=1200&q=80"],
+    images: ["https://res.cloudinary.com/dlx9tnj7p/image/upload/v1775805089/rice_mbckss.jpg"],
     originCountry: "India",
     packaging: "25kg / 50kg PP Bags",
     MOQ: "1 x 20ft Container"
@@ -33,7 +33,7 @@ const products = [
     name: "Pulses",
     category: "export",
     description: "Nutritious pulses processed to international standards with dependable packing and shipment support.",
-    images: ["https://images.unsplash.com/photo-1515543904379-3d757afe72e3?auto=format&fit=crop&w=1200&q=80"],
+    images: ["https://res.cloudinary.com/dlx9tnj7p/image/upload/v1775805081/best-import-and-export-for-pulses-easyway-impex_x73hog.webp"],
     originCountry: "India",
     packaging: "25kg Laminated Bags",
     MOQ: "10 MT"
@@ -42,7 +42,7 @@ const products = [
     name: "Turmeric",
     category: "export",
     description: "Premium turmeric with vibrant color, high curcumin content, and secure moisture-controlled packaging.",
-    images: ["https://images.unsplash.com/photo-1615485925873-5d4f8e0dd4d4?auto=format&fit=crop&w=1200&q=80"],
+    images: ["https://res.cloudinary.com/dlx9tnj7p/image/upload/v1775805074/turmeric_tdnsib.jpg"],
     originCountry: "India",
     packaging: "25kg HDPE Bags",
     MOQ: "5 MT"
@@ -51,7 +51,7 @@ const products = [
     name: "Glass Beads",
     category: "export",
     description: "Decorative and industrial-grade glass beads available in custom sizing and export-ready packing formats.",
-    images: ["https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1200&q=80"],
+    images: ["https://res.cloudinary.com/dlx9tnj7p/image/upload/v1775805097/glass-beads-500x500_pitjtt.webp"],
     originCountry: "India",
     packaging: "Cartons with inner packs",
     MOQ: "500 Kg"
@@ -60,7 +60,7 @@ const products = [
     name: "Handloom Bags",
     category: "export",
     description: "Eco-conscious handloom bags combining craftsmanship, durability, and custom branding options.",
-    images: ["https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=1200&q=80"],
+    images: ["https://images.unsplash.com/photo-1566618501882-c70a9736e23e?auto=format&fit=crop&w=1200&q=80"],
     originCountry: "India",
     packaging: "50 pieces per carton",
     MOQ: "1000 Pieces"
