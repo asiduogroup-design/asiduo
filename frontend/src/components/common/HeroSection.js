@@ -8,7 +8,7 @@ const HeroSection = ({
   secondaryAction
 }) => (
   <section className="hero-section">
-    <div className="hero-content">
+    <div className="container hero-content">
       {eyebrow ? <p className="eyebrow">{eyebrow}</p> : null}
       <h1>{title}</h1>
       {description ? <p className="hero-description">{description}</p> : null}
