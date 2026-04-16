@@ -31,9 +31,12 @@ const Navbar = () => {
   return (
     <header className="site-header">
       <div className="container nav-wrapper">
-        <Link to="/" className="brand-mark" onClick={() => setIsOpen(false)}>
-          <span className="brand-accent">AE</span>
-          <span>{COMPANY_NAME}</span>
+        <Link to="/" className="brand-mark" aria-label={COMPANY_NAME} onClick={() => setIsOpen(false)}>
+          <img
+            className="brand-logo-image"
+            src="https://res.cloudinary.com/dlx9tnj7p/image/upload/v1776351848/ChatGPT_Image_Apr_16_2026_08_31_40_PM_fuoajk.png"
+            alt={`${COMPANY_NAME} logo`}
+          />
         </Link>
 
         <button
