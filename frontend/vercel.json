@@ -8,6 +8,6 @@
   ],
   "env": {
     "CI": "false",
-    "REACT_APP_API_BASE_URL": "https://asiduo.onrender.com/api"
+    "REACT_APP_API_BASE_URL": "https://api.asiduoenterprises.com/api"
   }
 }
