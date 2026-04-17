@@ -118,8 +118,8 @@ main {
 }
 
 .brand-logo-image {
-  width: auto;
-  height: 60px;
+  width: 210px;
+  height: 72px;
   object-fit: contain;
   border-radius: 0;
 }
@@ -1012,7 +1012,8 @@ main {
   }
 
   .brand-logo-image {
-    height: 50px;
+    width: 180px;
+    height: 62px;
   }
 
   .nav-toggle {

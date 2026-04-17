@@ -34,7 +34,7 @@ const Navbar = () => {
         <Link to="/" className="brand-mark" aria-label={COMPANY_NAME} onClick={() => setIsOpen(false)}>
           <img
             className="brand-logo-image"
-            src="https://res.cloudinary.com/dlx9tnj7p/image/upload/v1776351848/ChatGPT_Image_Apr_16_2026_08_31_40_PM_fuoajk.png"
+            src="https://res.cloudinary.com/dlx9tnj7p/image/upload/v1776399473/ChatGPT_Image_Apr_17_2026_09_45_11_AM_cdauyl.png"
             alt={`${COMPANY_NAME} logo`}
           />
         </Link>
