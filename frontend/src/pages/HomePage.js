@@ -157,28 +157,18 @@ const HomePage = () => {
       <section className="home-hero">
         <div className="container home-hero-grid">
           <div className="home-hero-copy">
-            <p className="eyebrow hero-dark">Asiduo Enterprises</p>
-            <h1>Global sourcing and trade execution for products that demand reliability.</h1>
+            <p className="eyebrow hero-dark">ASIDUO ENTERPRISES</p>
+            <h1>Global Trading & Import Experts</h1>
             <p className="home-hero-text">
-              We help international buyers source export commodities, premium imported
-              goods, and technical industrial products through a disciplined,
-              partnership-led trade model.
+              Connecting World Markets. Wm Scenarios. Soft Gain Solutions
             </p>
             <div className="hero-actions">
-              <Link className="btn btn-primary" to="/products">
-                Explore Products
+              <Link className="btn btn-primary" to="/request-quote">
+                Request a Quote
               </Link>
-              <Link className="btn btn-ghost" to="/request-quote">
-                Request Quote
+              <Link className="btn btn-secondary" to="/products">
+                Explore More
               </Link>
-            </div>
-            <div className="hero-metrics">
-              {highlights.map((item) => (
-                <div className="hero-metric-card" key={item.title}>
-                  <strong>{item.value}</strong>
-                  <span>{item.title}</span>
-                </div>
-              ))}
             </div>
           </div>
 
@@ -305,18 +295,16 @@ const HomePage = () => {
 
       <section className="section home-cta-section">
         <div className="home-cta">
-          <p className="eyebrow">Ready To Trade</p>
-          <h2>Let's build your next import or export supply channel with confidence.</h2>
-          <p>
-            Connect with Asiduo Enterprises for sourcing discussions, technical
-            requirements, MOQ planning, and tailored quotations.
-          </p>
+          <div className="home-cta-copy">
+            <p className="eyebrow">Open A Trade Desk</p>
+            <h2>
+              Tell us what to source.
+              <span>We will respond like partners.</span>
+            </h2>
+          </div>
           <div className="home-cta-actions">
-            <Link className="btn btn-primary" to="/contact">
-              Talk to Our Team
-            </Link>
-            <Link className="btn btn-secondary" to="/request-quote">
-              Get a Quote
+            <Link className="btn home-cta-button" to="/request-quote">
+              Request A Quote ->
             </Link>
           </div>
         </div>
