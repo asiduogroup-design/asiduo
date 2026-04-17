@@ -26,25 +26,54 @@ const highlights = [
   }
 ];
 
-const capabilities = [
+const verticals = [
   {
-    title: "Agricultural Exports",
-    description: "Rice, pulses, turmeric, spices, and crafted goods handled with quality-first packing and documentation."
+    number: "01",
+    title: "Agricultural",
+    titleItalic: "Exports",
+    image: "https://crisp-visual-alchemy.lovable.app/assets/vertical-agri-DWxhO5TB.jpg",
+    description: "Rice, pulses, turmeric, spices, and crafted goods — handled with quality-first packing, MOQ planning, and full export documentation.",
+    items: ["Basmati & Non-Basmati Rice", "Turmeric & Spices", "Pulses & Lentils", "Crafted Goods"]
   },
   {
-    title: "Premium Imports",
-    description: "Curated international food and pet care products selected for premium retail and distribution channels."
+    number: "02",
+    title: "Premium",
+    titleItalic: "Imports",
+    image: "https://crisp-visual-alchemy.lovable.app/assets/vertical-imports-DPIfv6pq.jpg",
+    description: "Curated international food and pet care products selected for premium retail and distribution channels with cold-chain integrity.",
+    items: ["Gourmet Foods", "Pet Care", "Health & Wellness", "Specialty Beverages"]
   },
   {
-    title: "Technical Procurement",
-    description: "ATEX panels, industrial lighting, and hazardous-area equipment sourced for industrial buyers."
+    number: "03",
+    title: "Technical",
+    titleItalic: "Procurement",
+    image: "https://crisp-visual-alchemy.lovable.app/assets/vertical-industrial-CGr9IEy2.jpg",
+    description: "ATEX panels, industrial lighting, and hazardous-area equipment sourced from certified manufacturers for serious industrial buyers.",
+    items: ["ATEX Control Panels", "Industrial LED Lighting", "Hazardous-Area Equipment", "Custom Enclosures"]
   }
 ];
 
 const tradeSteps = [
-  "Share your product requirement, destination market, and volume targets.",
-  "We align sourcing, MOQ, packaging, and compliance expectations.",
-  "Commercial coordination, documentation, and shipment planning move into execution."
+  {
+    roman: "I.",
+    title: "Discovery",
+    description: "We map your specifications, MOQ, certifications, and destination ports in a single discovery call."
+  },
+  {
+    roman: "II.",
+    title: "Sourcing",
+    description: "Our network of vetted producers and certified manufacturers responds with samples and indicative pricing."
+  },
+  {
+    roman: "III.",
+    title: "Execution",
+    description: "Quality inspection, export documentation, and shipment readiness — coordinated from a single trade desk."
+  },
+  {
+    roman: "IV.",
+    title: "Delivery",
+    description: "Shipment tracking, port clearance support, and a post-delivery review to refine the next cycle."
+  }
 ];
 
 const serviceIcons = {
@@ -195,17 +224,57 @@ const HomePage = () => {
         </div>
       </section>
 
-      <section className="section">
+      <section className="stats-band">
+        <div className="stats-band-grid">
+          <div className="stats-band-item">
+            <span className="stats-band-label">Trade Corridors</span>
+            <span className="stats-band-value">16</span>
+          </div>
+          <div className="stats-band-item">
+            <span className="stats-band-label">Product Lines</span>
+            <span className="stats-band-value">120+</span>
+          </div>
+          <div className="stats-band-item">
+            <span className="stats-band-label">Reliability Score</span>
+            <span className="stats-band-value">99.4%</span>
+          </div>
+        </div>
+      </section>
+
+      <section className="trade-doctrine-section">
+        <div className="container trade-doctrine-grid">
+          <div className="trade-doctrine-label">
+            <span className="doctrine-rule"></span>
+            <span className="doctrine-eyebrow">Trade Doctrine</span>
+          </div>
+          <p className="trade-doctrine-text">
+            We exist to remove the quiet anxieties of international procurement — origin,
+            packaging, MOQ, documentation, and arrival — through a single disciplined desk
+            that <em>treats every shipment as a relationship.</em>
+          </p>
+        </div>
+      </section>
+
+      <section className="section verticals-section">
         <div className="container">
-          <SectionHeader
-            title="Trade Verticals"
-            subtitle="A focused business structure designed to serve commercial buyers across food, retail, and industrial sectors."
-          />
-          <div className="capability-grid">
-            {capabilities.map((item) => (
-              <div className="capability-card" key={item.title}>
-                <h3>{item.title}</h3>
-                <p>{item.description}</p>
+          <div className="section-header-flex">
+            <h2 className="strategic-verticals-title">Strategic <span>Verticals</span></h2>
+            <p className="section-tagline">THREE DESKS · ONE OPERATION</p>
+          </div>
+          <div className="verticals-grid">
+            {verticals.map((vertical) => (
+              <div className="vertical-card" key={vertical.number}>
+                <div className="vertical-image">
+                  <img src={vertical.image} alt={vertical.title} />
+                </div>
+                <h3 className="vertical-title">{vertical.title} <span>{vertical.titleItalic}</span></h3>
+                <p className="vertical-description">{vertical.description}</p>
+                <ul className="vertical-items">
+                  {vertical.items.map((item, idx) => (
+                    <li key={idx}>{item}</li>
+                  ))}
+                </ul>
+                <Link to="/products" className="explore-desk-link">EXPLORE DESK →</Link>
               </div>
             ))}
           </div>
@@ -277,18 +346,35 @@ const HomePage = () => {
         </div>
       </section>
 
-      <section className="section section-muted">
+      <section className="section method-section">
         <div className="container">
-          <SectionHeader
-            title="How We Work"
-            subtitle="Simple, direct, and built around commercial clarity from inquiry to shipment."
-          />
-          <div className="capability-grid">
+          <div className="method-header">
+            <div className="method-eyebrow">
+              <span className="method-rule"></span>
+              <span>The Method</span>
+            </div>
+            <div className="method-intro">
+              <h2 className="method-title">Four movements, <span>one shipment.</span></h2>
+              <p className="method-subtitle">A method designed for buyers who treat procurement as strategy — not as a transaction.</p>
+            </div>
+          </div>
+          <div className="method-grid">
             {tradeSteps.map((step) => (
-              <div className="capability-card" key={step}>
-                <p>{step}</p>
+              <div className="method-card" key={step.title}>
+                <div className="method-roman">{step.roman}</div>
+                <h3 className="method-card-title">{step.title}</h3>
+                <p className="method-card-description">{step.description}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section testimonial-section">
+        <div className="container">
+          <div className="testimonial-content">
+            <div className="testimonial-mark">"</div>
+            <p className="testimonial-text">Asiduo treats every consignment as if their name were on the bill of lading. In commodities, that is the only quality that compounds.</p>
           </div>
         </div>
       </section>
@@ -304,7 +390,7 @@ const HomePage = () => {
           </div>
           <div className="home-cta-actions">
             <Link className="btn home-cta-button" to="/request-quote">
-              Request A Quote ->
+              Request A Quote →
             </Link>
           </div>
         </div>
