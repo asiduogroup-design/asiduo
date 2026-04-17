@@ -270,7 +270,7 @@ const HomePage = () => {
         </div>
       </section>
 
-      <section className="section">
+      <section className="section home-offerings-section">
         <div className="container two-column">
           <div>
             <SectionHeader
@@ -282,7 +282,7 @@ const HomePage = () => {
               {services.map((service, i) => (
                 <div className="service-line-card" key={service} style={{ "--i": i }}>
                   <span className="service-icon">{serviceIcons[service]}</span>
-                  <p>
+                  <p className="offering-line-text">
                     {service.split("").map((char, li) => (
                       <span key={li} className="letter" style={{ "--li": li }}>
                         {char === " " ? "\u00A0" : char}
@@ -303,7 +303,7 @@ const HomePage = () => {
               {industries.map((industry, i) => (
                 <div className="service-line-card" key={industry} style={{ "--i": i }}>
                   <span className="service-icon">{industryIcons[industry]}</span>
-                  <p>
+                  <p className="offering-line-text">
                     {industry.split("").map((char, li) => (
                       <span key={li} className="letter" style={{ "--li": li }}>
                         {char === " " ? "\u00A0" : char}
