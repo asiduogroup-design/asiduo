@@ -790,16 +790,6 @@ main {
   flex-direction: column;
 }
 
-.method-roman {
-  font-family: var(--font-serif);
-  font-size: 1rem;
-  font-weight: 400;
-  color: #8a9bb0;
-  margin-bottom: 1rem;
-  line-height: 1;
-  letter-spacing: 0.05em;
-}
-
 .method-card-title {
   margin: 0 0 0.8rem;
   font-family: var(--font-serif);

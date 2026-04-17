@@ -1,11 +1,6 @@
 import { Link } from "react-router-dom";
 import { useEffect, useRef } from "react";
 import SectionHeader from "../components/common/SectionHeader";
-import LoadingSpinner from "../components/common/LoadingSpinner";
-import EmptyState from "../components/common/EmptyState";
-import ProductCard from "../components/products/ProductCard";
-import useAsync from "../hooks/useAsync";
-import { productService } from "../services/api";
 import { industries, services } from "../utils/constants";
 
 const highlights = [
@@ -55,22 +50,18 @@ const verticals = [
 
 const tradeSteps = [
   {
-    roman: "I.",
     title: "Discovery",
     description: "We map your specifications, MOQ, certifications, and destination ports in a single discovery call."
   },
   {
-    roman: "II.",
     title: "Sourcing",
     description: "Our network of vetted producers and certified manufacturers responds with samples and indicative pricing."
   },
   {
-    roman: "III.",
     title: "Execution",
     description: "Quality inspection, export documentation, and shipment readiness — coordinated from a single trade desk."
   },
   {
-    roman: "IV.",
     title: "Delivery",
     description: "Shipment tracking, port clearance support, and a post-delivery review to refine the next cycle."
   }
@@ -159,8 +150,6 @@ const industryIcons = {
 };
 
 const HomePage = () => {
-  const { data, loading } = useAsync(() => productService.getProducts());
-  const featuredProducts = data?.data?.slice(0, 6) || [];
   const servicesRef = useRef(null);
   const industriesRef = useRef(null);
 
@@ -281,24 +270,6 @@ const HomePage = () => {
         </div>
       </section>
 
-      <section className="section section-muted">
-        <div className="container">
-          <SectionHeader
-            title="Featured Products"
-            subtitle="A modern product showcase across consumer, agricultural, and industrial sourcing categories."
-          />
-          {loading ? <LoadingSpinner message="Loading featured products..." /> : null}
-          {!loading && featuredProducts.length === 0 ? (
-            <EmptyState title="No products available" message="Seed the database or add products from the admin panel." />
-          ) : null}
-          <div className="product-grid">
-            {featuredProducts.map((product) => (
-              <ProductCard key={product._id} product={product} />
-            ))}
-          </div>
-        </div>
-      </section>
-
       <section className="section">
         <div className="container two-column">
           <div>
@@ -361,7 +332,6 @@ const HomePage = () => {
           <div className="method-grid">
             {tradeSteps.map((step) => (
               <div className="method-card" key={step.title}>
-                <div className="method-roman">{step.roman}</div>
                 <h3 className="method-card-title">{step.title}</h3>
                 <p className="method-card-description">{step.description}</p>
               </div>
