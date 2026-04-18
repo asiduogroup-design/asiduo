@@ -1,61 +1,180 @@
-import HeroSection from "../components/common/HeroSection";
-import InquiryForm from "../components/forms/InquiryForm";
+import { useState } from "react";
 import { inquiryService } from "../services/api";
 
+const initialState = {
+  name: "",
+  company: "",
+  email: "",
+  country: "",
+  productInterest: "",
+  message: "",
+};
+
+const contactDetails = [
+  {
+    label: "TRADE DESK",
+    value: "sushil.singh@asiduoenterprises.com",
+    href: "mailto:sushil.singh@asiduoenterprises.com",
+  },
+  {
+    label: "OPERATIONS",
+    value: "India · Global Network",
+  },
+  {
+    label: "HOURS",
+    value: "Mon — Sat · 09:00 – 19:00 IST",
+  },
+  {
+    label: "INDICATIVE QUOTE",
+    value: "Within 48 hours of a complete specification.",
+  },
+];
+
 const ContactPage = () => {
-  const handleSubmit = async (payload) => {
-    await inquiryService.createInquiry(payload);
+  const [formData, setFormData] = useState(initialState);
+  const [successMessage, setSuccessMessage] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setSubmitting(true);
+    try {
+      await inquiryService.createInquiry({
+        name: formData.name,
+        email: formData.email,
+        phone: formData.company,
+        country: formData.country,
+        productInterest: formData.productInterest,
+        message: formData.message,
+      });
+      setFormData(initialState);
+      setSuccessMessage("Your inquiry has been received. A partner will respond within 48 hours.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
     <>
-      <HeroSection
-        eyebrow="Contact"
-        title="Connect with our trade team."
-        description="Share your sourcing, distribution, or product inquiry and we will respond with the right next steps."
-      />
+      {/* ── Editorial Hero ── */}
+      <section className="about-hero section">
+        <div className="container">
+          <p className="about-eyebrow">TRADE DESK · OPEN A CONVERSATION</p>
+          <h1>
+            Tell us what to source.<br />
+            We respond like partners.
+          </h1>
+          <p className="about-hero-text">
+            Share your specification, destination, and timeline. A partner — not a
+            form-handler — will reply within 48 hours.
+          </p>
+        </div>
+      </section>
 
-      <section className="section">
-        <div className="container contact-grid">
-          <InquiryForm
-            title="Send an Inquiry"
-            description="Tell us what you need and our team will get back to you."
-            onSubmit={handleSubmit}
-            submitLabel="Submit Inquiry"
-          />
-          <div className="info-panel">
-            <h3>Office Contacts</h3>
-            <p className="contact-office-item">
-              <span className="contact-office-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M4 6.75C4 5.7835 4.7835 5 5.75 5H18.25C19.2165 5 20 5.7835 20 6.75V17.25C20 18.2165 19.2165 19 18.25 19H5.75C4.7835 19 4 18.2165 4 17.25V6.75Z"
-                    stroke="currentColor"
-                    strokeWidth="1.8"
+      {/* ── Split: Info + Form ── */}
+      <section className="section contact-split-section">
+        <div className="container contact-split-grid">
+
+          {/* Left — contact details */}
+          <div className="contact-details-col">
+            {contactDetails.map(({ label, value, href }) => (
+              <div className="contact-detail-card" key={label}>
+                <span className="contact-detail-label">{label}</span>
+                {href ? (
+                  <a className="contact-detail-value" href={href}>{value}</a>
+                ) : (
+                  <span className="contact-detail-value">{value}</span>
+                )}
+              </div>
+            ))}
+          </div>
+
+          {/* Right — inquiry form */}
+          <div className="contact-form-col">
+            <form className="contact-editorial-form" onSubmit={handleSubmit}>
+              <div className="contact-form-row">
+                <label className="contact-field-label">
+                  YOUR NAME
+                  <input
+                    className="contact-field-input"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    required
+                    autoComplete="name"
                   />
-                  <path d="M4.5 7L12 12.5L19.5 7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-                </svg>
-              </span>
-              <a href="mailto:sushil.singh@asiduoenterprises.com">sushil.singh@asiduoenterprises.com</a>
-            </p>
-            <p className="contact-office-item">
-              <span className="contact-office-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M6.6 4.75C6.19 3.92 5.14 3.6 4.33 4.05L2.59 5.02C1.81 5.45 1.42 6.34 1.62 7.2C2.79 12.21 6.62 16.12 11.57 17.41C12.45 17.64 13.37 17.25 13.83 16.45L14.77 14.81C15.24 13.99 14.95 12.94 14.15 12.5L12.15 11.4C11.41 10.99 10.49 11.09 9.86 11.66L9.17 12.27C7.45 11.36 6.06 9.93 5.2 8.17L5.77 7.52C6.35 6.86 6.46 5.9 6.06 5.12L6.6 4.75Z"
-                    stroke="currentColor"
-                    strokeWidth="1.6"
-                    strokeLinejoin="round"
+                </label>
+                <label className="contact-field-label">
+                  COMPANY
+                  <input
+                    className="contact-field-input"
+                    name="company"
+                    value={formData.company}
+                    onChange={handleChange}
+                    autoComplete="organization"
                   />
-                </svg>
-              </span>
-              <a href="tel:+918383961634">+91 8383961634</a>
-            </p>
-            <p>Hours: Monday to Saturday, 9:00 AM - 6:00 PM</p>
-            <p>
-              We support product sourcing, bulk orders, technical procurement,
-              and trade documentation discussions.
-            </p>
+                </label>
+              </div>
+              <div className="contact-form-row">
+                <label className="contact-field-label">
+                  EMAIL
+                  <input
+                    className="contact-field-input"
+                    name="email"
+                    type="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                    autoComplete="email"
+                  />
+                </label>
+                <label className="contact-field-label">
+                  COUNTRY / DESTINATION PORT
+                  <input
+                    className="contact-field-input"
+                    name="country"
+                    value={formData.country}
+                    onChange={handleChange}
+                    autoComplete="country-name"
+                  />
+                </label>
+              </div>
+              <label className="contact-field-label contact-field-full">
+                PRODUCT / SPECIFICATION
+                <input
+                  className="contact-field-input"
+                  name="productInterest"
+                  value={formData.productInterest}
+                  onChange={handleChange}
+                  required
+                />
+              </label>
+              <label className="contact-field-label contact-field-full">
+                MESSAGE
+                <textarea
+                  className="contact-field-input contact-field-textarea"
+                  name="message"
+                  rows={5}
+                  value={formData.message}
+                  onChange={handleChange}
+                  required
+                />
+              </label>
+              <p className="contact-form-disclaimer">
+                We never share inquiries. Confidentiality is part of the service.
+              </p>
+              <button className="btn btn-primary contact-submit-btn" type="submit" disabled={submitting}>
+                {submitting ? "SENDING…" : "SEND INQUIRY"}
+              </button>
+              {successMessage && (
+                <p className="contact-success-msg">{successMessage}</p>
+              )}
+            </form>
           </div>
         </div>
       </section>

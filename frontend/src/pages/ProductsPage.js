@@ -1,5 +1,5 @@
 import { useState } from "react";
-import HeroSection from "../components/common/HeroSection";
+import { Link } from "react-router-dom";
 import SectionHeader from "../components/common/SectionHeader";
 import LoadingSpinner from "../components/common/LoadingSpinner";
 import EmptyState from "../components/common/EmptyState";
@@ -19,12 +19,24 @@ const ProductsPage = () => {
 
   return (
     <>
-      <HeroSection
-        eyebrow="Products"
-        title="A diverse portfolio across export commodities, imported foods, and technical equipment."
-        description="Browse our product categories and connect with our team for packaging, MOQ, and shipment planning."
-        primaryAction={{ label: "Request Quote", path: "/request-quote" }}
-      />
+      <section className="about-hero section">
+        <div className="container">
+          <p className="about-eyebrow">Products · Trade Portfolio</p>
+          <h1>A curated trading portfolio built for dependable supply.</h1>
+          <p className="about-hero-text">
+            Browse export commodities, premium imports, and technical procurement lines with full support on
+            grade, packaging, MOQ, and shipment planning.
+          </p>
+          <div className="about-hero-actions">
+            <Link className="btn btn-primary" to="/request-quote">
+              Request Quote
+            </Link>
+            <Link className="btn btn-secondary" to="/contact">
+              Contact Us
+            </Link>
+          </div>
+        </div>
+      </section>
 
       <section className="section">
         <div className="container">
