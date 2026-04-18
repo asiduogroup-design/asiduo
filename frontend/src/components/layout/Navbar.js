@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { COMPANY_NAME, navigationLinks } from "../../utils/constants";
 import { clearStoredAuth, getStoredAuth } from "../../utils/auth";
@@ -6,6 +6,8 @@ import { clearStoredAuth, getStoredAuth } from "../../utils/auth";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [auth, setAuth] = useState(getStoredAuth());
+  const toggleRef = useRef(null);
+  const navRef = useRef(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -18,6 +20,36 @@ const Navbar = () => {
       window.removeEventListener("auth-changed", syncAuth);
     };
   }, []);
+
+  useEffect(() => {
+    if (!isOpen) {
+      return undefined;
+    }
+
+    const handlePointerDown = (event) => {
+      const target = event.target;
+      if (navRef.current?.contains(target) || toggleRef.current?.contains(target)) {
+        return;
+      }
+      setIsOpen(false);
+    };
+
+    const handleEscape = (event) => {
+      if (event.key === "Escape") {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handlePointerDown);
+    document.addEventListener("touchstart", handlePointerDown);
+    document.addEventListener("keydown", handleEscape);
+
+    return () => {
+      document.removeEventListener("mousedown", handlePointerDown);
+      document.removeEventListener("touchstart", handlePointerDown);
+      document.removeEventListener("keydown", handleEscape);
+    };
+  }, [isOpen]);
 
   const handleLogout = () => {
     clearStoredAuth();
@@ -40,6 +72,7 @@ const Navbar = () => {
         </Link>
 
         <button
+          ref={toggleRef}
           type="button"
           className="nav-toggle"
           aria-label="Toggle navigation"
@@ -50,7 +83,7 @@ const Navbar = () => {
           <span />
         </button>
 
-        <nav className={`nav-links ${isOpen ? "open" : ""}`}>
+        <nav ref={navRef} className={`nav-links ${isOpen ? "open" : ""}`}>
           {navigationLinks.map((link) => (
             <NavLink
               key={link.path}
