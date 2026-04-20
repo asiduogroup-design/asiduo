@@ -11,7 +11,7 @@ const emptyForm = {
   MOQ: ""
 };
 
-const ProductForm = ({ initialValues, onSubmit, submitLabel, loading }) => {
+const ProductForm = ({ initialValues, onSubmit, submitLabel, loading, onCancel }) => {
   const [formData, setFormData] = useState(emptyForm);
 
   useEffect(() => {
@@ -90,9 +90,16 @@ const ProductForm = ({ initialValues, onSubmit, submitLabel, loading }) => {
           <input name="MOQ" value={formData.MOQ} onChange={handleChange} required />
         </label>
       </div>
-      <button className="btn btn-primary" type="submit" disabled={loading}>
-        {loading ? "Saving..." : submitLabel}
-      </button>
+      <div className="form-actions">
+        <button className="btn btn-primary" type="submit" disabled={loading}>
+          {loading ? "Saving..." : submitLabel}
+        </button>
+        {onCancel && (
+          <button className="btn btn-secondary" type="button" onClick={onCancel} disabled={loading}>
+            Cancel
+          </button>
+        )}
+      </div>
     </form>
   );
 };

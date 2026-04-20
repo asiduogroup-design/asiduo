@@ -2304,3 +2304,119 @@ a.contact-detail-value:hover {
     margin-top: 1rem;
   }
 }
+
+/* ── Product Management Page ── */
+.pm-list-section {
+  padding: 0;
+}
+
+.pm-list-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+}
+
+.pm-list-header h2 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-navy);
+}
+
+.pm-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.pm-filter-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 1rem;
+  border: 1.5px solid rgba(15, 39, 71, 0.18);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--color-grey-700);
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.pm-filter-btn:hover {
+  border-color: var(--color-navy);
+  color: var(--color-navy);
+}
+
+.pm-filter-btn.active {
+  background: var(--color-terracotta, #c0522a);
+  border-color: var(--color-terracotta, #c0522a);
+  color: #fff;
+}
+
+.pm-filter-count {
+  font-size: 0.78rem;
+  font-weight: 600;
+  opacity: 0.85;
+}
+
+/* Add/Edit form overlay panel */
+.admin-form-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(2, 17, 38, 0.45);
+  z-index: 200;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 2rem 1rem;
+  overflow-y: auto;
+}
+
+.admin-form-panel {
+  background: #fff;
+  border-radius: var(--radius-md);
+  box-shadow: 0 8px 40px rgba(2, 17, 38, 0.18);
+  width: min(100%, 680px);
+  padding: 2rem;
+  position: relative;
+}
+
+.admin-form-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.admin-form-panel-header h2 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--color-navy);
+}
+
+.btn-icon-close {
+  background: none;
+  border: none;
+  font-size: 1.1rem;
+  cursor: pointer;
+  color: var(--color-grey-500);
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--radius-sm);
+  line-height: 1;
+  transition: color 0.15s;
+}
+
+.btn-icon-close:hover {
+  color: var(--color-navy);
+}
+
+.form-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
