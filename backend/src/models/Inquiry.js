@@ -15,13 +15,34 @@ const inquirySchema = new mongoose.Schema(
     },
     phone: {
       type: String,
-      required: [true, "Phone number is required"],
+      trim: true
+    },
+    company: {
+      type: String,
       trim: true
     },
     country: {
       type: String,
-      required: [true, "Country is required"],
       trim: true
+    },
+    gstNumber: {
+      type: String,
+      trim: true
+    },
+    partyType: {
+      type: String,
+      enum: ["buyer", "supplier", ""],
+      default: ""
+    },
+    partySubType: {
+      type: String,
+      enum: ["wholesaler", "retailer", "consumer", ""],
+      default: ""
+    },
+    serviceType: {
+      type: String,
+      enum: ["import", "export", ""],
+      default: ""
     },
     productInterest: {
       type: String,

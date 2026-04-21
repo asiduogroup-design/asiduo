@@ -3,12 +3,14 @@ import { inquiryService } from "../services/api";
 
 const initialState = {
   name: "",
+  phone: "",
   company: "",
   email: "",
   country: "",
   gstNumber: "",
   partyType: "",
   partySubType: "",
+  serviceType: "",
   productInterest: "",
   message: "",
 };
@@ -30,8 +32,13 @@ const RequestQuotePage = () => {
       await inquiryService.createQuoteRequest({
         name: formData.name,
         email: formData.email,
-        phone: formData.company,
+        phone: formData.phone,
+        company: formData.company,
         country: formData.country,
+        gstNumber: formData.gstNumber,
+        partyType: formData.partyType,
+        partySubType: formData.partySubType,
+        serviceType: formData.serviceType,
         productInterest: formData.productInterest,
         message: formData.message,
       });
@@ -73,7 +80,20 @@ const RequestQuotePage = () => {
                 />
               </label>
               <label className="contact-field-label">
-                COMPANY
+                PHONE NUMBER
+                <input
+                  className="contact-field-input"
+                  name="phone"
+                  type="tel"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  autoComplete="tel"
+                />
+              </label>
+            </div>
+            <div className="contact-form-row">
+              <label className="contact-field-label">
+                COMPANY NAME
                 <input
                   className="contact-field-input"
                   name="company"
@@ -81,6 +101,19 @@ const RequestQuotePage = () => {
                   onChange={handleChange}
                   autoComplete="organization"
                 />
+              </label>
+              <label className="contact-field-label">
+                SERVICE TYPE
+                <select
+                  className="contact-field-input"
+                  name="serviceType"
+                  value={formData.serviceType}
+                  onChange={handleChange}
+                >
+                  <option value="">-- Select --</option>
+                  <option value="import">Import</option>
+                  <option value="export">Export</option>
+                </select>
               </label>
             </div>
             <div className="contact-form-row">

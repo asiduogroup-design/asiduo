@@ -34,7 +34,8 @@ export const inquiryService = {
   createInquiry: (payload) => api.post("/inquiry", payload),
   createQuoteRequest: (payload) =>
     api.post("/inquiry", { ...payload, inquiryType: "quote" }),
-  getInquiries: () => api.get("/inquiries")
+  getInquiries: (params = {}) => api.get("/inquiries", { params }),
+  deleteInquiry: (id) => api.delete(`/inquiries/${id}`)
 };
 
 export const categoryService = {
