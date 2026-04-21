@@ -6,6 +6,9 @@ const initialState = {
   company: "",
   email: "",
   country: "",
+  gstNumber: "",
+  partyType: "",
+  partySubType: "",
   productInterest: "",
   message: "",
 };
@@ -104,6 +107,47 @@ const RequestQuotePage = () => {
                 />
               </label>
             </div>
+            <div className="contact-form-row">
+              <label className="contact-field-label">
+                GST NUMBER
+                <input
+                  className="contact-field-input"
+                  name="gstNumber"
+                  value={formData.gstNumber}
+                  onChange={handleChange}
+                  placeholder="e.g. 22AAAAA0000A1Z5"
+                />
+              </label>
+              <label className="contact-field-label">
+                PARTY TYPE
+                <select
+                  className="contact-field-input"
+                  name="partyType"
+                  value={formData.partyType}
+                  onChange={handleChange}
+                >
+                  <option value="">-- Select --</option>
+                  <option value="buyer">Buyer</option>
+                  <option value="supplier">Supplier</option>
+                </select>
+              </label>
+            </div>
+            {formData.partyType && (
+              <label className="contact-field-label contact-field-full">
+                {formData.partyType === "buyer" ? "BUYER TYPE" : "SUPPLIER TYPE"}
+                <select
+                  className="contact-field-input"
+                  name="partySubType"
+                  value={formData.partySubType}
+                  onChange={handleChange}
+                >
+                  <option value="">-- Select --</option>
+                  <option value="wholesaler">Wholesaler</option>
+                  <option value="retailer">Retailer</option>
+                  <option value="consumer">Consumer</option>
+                </select>
+              </label>
+            )}
             <label className="contact-field-label contact-field-full">
               PRODUCT / SPECIFICATION
               <input
